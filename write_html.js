@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿const fs = require('fs');
+const html = <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -99,14 +100,14 @@ tr:hover { background-color: #252830; }
 </div>
 
 <script>
-    // Datos iniciales desde la app en C++ original
+    // Initial data matching the original C++ app
     const defaultCharges = [
         {name: 'Spotify', amount: 8500},
         {name: 'Pago Casa', amount: 100000},
         {name: 'Pago tarjeta', amount: 100000},
         {name: 'Pago Nacho', amount: 15000},
         {name: 'Pago Mamá', amount: 20000},
-        {name: 'Ttransporte', amount: 30000}
+        {name: 'Transporte', amount: 30000}
     ];
     
     const defaultHistory = [
@@ -154,13 +155,13 @@ tr:hover { background-color: #252830; }
         let total = 0;
         charges.forEach(c => {
             total += c.amount;
-            list.innerHTML += `
+            list.innerHTML += \\
                 <div class='charge-item'>
-                    <span class='charge-name'>${c.name}</span>
-                    <span class='charge-value'>$${c.amount}</span>
-                    <button class='icon-btn delete' style='padding: 4px 8px; font-size: 12px; margin: 0;' onclick="delCharge('${c.name}')">&#10005;</button>
+                    <span class='charge-name'>\</span>
+                    <span class='charge-value'>$\</span>
+                    <button class='icon-btn delete' style='padding: 4px 8px; font-size: 12px; margin: 0;' onclick="delCharge('\')">&#10005;</button>
                 </div>
-            `;
+            \\;
         });
         document.getElementById('fixedInput').value = total;
     }
@@ -169,18 +170,18 @@ tr:hover { background-color: #252830; }
         const tbody = document.getElementById('historyBody');
         tbody.innerHTML = '';
         history.forEach(h => {
-            tbody.innerHTML += `
+            tbody.innerHTML += \\
                 <tr>
-                    <td>${h.month}</td>
-                    <td>$${h.income}</td>
-                    <td>$${h.expenses}</td>
-                    <td>$${h.savings}</td>
+                    <td>\</td>
+                    <td>$\</td>
+                    <td>$\</td>
+                    <td>$\</td>
                     <td>
-                        <button onclick="editarPlan('${h.month}', ${h.income})" class="icon-btn">Editar</button>
-                        <button onclick="borrarPlan('${h.month}')" class="icon-btn delete">Borrar</button>
+                        <button onclick="editarPlan('\', \)" class="icon-btn">Editar</button>
+                        <button onclick="borrarPlan('\')" class="icon-btn delete">Borrar</button>
                     </td>
                 </tr>
-            `;
+            \\;
         });
     }
 
@@ -262,3 +263,5 @@ tr:hover { background-color: #252830; }
 </script>
 </body>
 </html>
+;
+fs.writeFileSync('C:/Users/Jeffry/Desktop/PresupuestoWeb/index.html', html, 'utf8');
